@@ -1,0 +1,86 @@
+Building ChromaTap for Distribution
+====================================
+
+Prerequisites
+-------------
+✅ Node.js and npm installed
+✅ All dependencies installed (npm install)
+✅ ChromaTap.ico created in assets/ folder (see ICON_CONVERSION.txt)
+
+Step 1: Convert Icon
+---------------------
+Make sure you have assets/ChromaTap.ico
+(See ICON_CONVERSION.txt for instructions)
+
+Step 2: Clean Build
+--------------------
+Remove any previous build artifacts:
+```powershell
+Remove-Item -Recurse -Force out -ErrorAction SilentlyContinue
+```
+
+Step 3: Build the Installer
+----------------------------
+Run the Electron Forge make command:
+```powershell
+npm run make
+```
+
+This will:
+- Package the app with all dependencies
+- Create a Windows installer (.exe)
+- Generate a portable ZIP version
+- Output files to: out/make/
+
+Expected Output
+---------------
+out/
+├── make/
+│   ├── squirrel.windows/
+│   │   └── x64/
+│   │       ├── ChromaTap-0.1.0-alpha Setup.exe  ← Installer (distribute this!)
+│   │       └── RELEASES
+│   └── zip/
+│       └── win32/
+│           └── ChromaTap-win32-x64-0.1.0-alpha.zip  ← Portable version
+
+Step 4: Test the Build
+-----------------------
+1. Navigate to: out/make/squirrel.windows/x64/
+2. Run: ChromaTap-0.1.0-alpha Setup.exe
+3. Install and test all features
+4. Verify:
+   - Color sampling works
+   - Palettes save and load
+   - Color wheel functions
+   - All buttons work
+
+Step 5: Prepare for GitHub
+---------------------------
+1. Create a GitHub repository
+2. Push your code (excluding out/, node_modules/)
+3. Create a new Release (v0.1.0-alpha)
+4. Upload: ChromaTap-0.1.0-alpha Setup.exe
+5. Copy the README.md content to the release description
+
+Troubleshooting
+---------------
+Error: "Cannot find module robotjs"
+Fix: npm rebuild robotjs --update-binary
+
+Error: "Icon not found"
+Fix: Ensure assets/ChromaTap.ico exists
+
+Error: Build fails with native modules
+Fix: npm install --force
+
+File Size
+---------
+Expected installer size: 50-100 MB
+(RobotJS includes native binaries for screen capture)
+
+Distribution
+------------
+Share the Setup.exe file with your testers.
+They only need to download and run the installer.
+No Node.js or other dependencies required!

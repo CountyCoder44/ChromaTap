@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+out/
+dist/
+
+# Electron Forge
+.webpack/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# Optional: User data (uncomment if you don't want to track default data)
+# data/projects.json
+# data/palettes.json

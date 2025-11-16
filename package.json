@@ -1,0 +1,52 @@
+{
+  "name": "chroma-tap",
+  "productName": "ChromaTap",
+  "version": "0.1.0-alpha",
+  "description": "A color sampling and palette management tool with color wheel, invert, and storage features.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "Ryan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CountyCoder44/ChromaTap"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "assets/ChromaTap"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "ChromaTap",
+            "setupIcon": "assets/ChromaTap.ico",
+            "iconUrl": "https://raw.githubusercontent.com/CountyCoder44/ChromaTap/main/assets/ChromaTap.ico"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "win32"
+          ]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1",
+    "robotjs": "^0.6.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.10.2",
+    "@electron-forge/maker-squirrel": "^7.10.2",
+    "@electron-forge/maker-zip": "^7.10.2",
+    "electron": "38.3.0",
+    "png-to-ico": "^3.0.1"
+  }
+}

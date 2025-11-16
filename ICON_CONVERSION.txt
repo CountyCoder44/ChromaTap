@@ -1,0 +1,33 @@
+Icon Conversion Instructions
+============================
+
+Your ChromaTap.png needs to be converted to .ico format for Windows.
+
+Option 1: Online Converter (Quickest)
+--------------------------------------
+1. Go to https://convertio.co/png-ico/ or https://www.icoconverter.com/
+2. Upload assets/ChromaTap.png
+3. Download the .ico file
+4. Save it as: assets/ChromaTap.ico
+
+Option 2: Using npm package (if you want to automate)
+-----------------------------------------------------
+npm install -g png-to-ico
+png-to-ico assets/ChromaTap.png > assets/ChromaTap.ico
+
+Option 3: Using PowerShell (Windows built-in, multi-size)
+----------------------------------------------------------
+# This requires .NET and creates a proper multi-resolution ICO
+# Save this as convert-icon.ps1 and run it:
+
+Add-Type -AssemblyName System.Drawing
+$img = [System.Drawing.Image]::FromFile("$PWD\assets\ChromaTap.png")
+$icon = [System.Drawing.Icon]::FromHandle($img.GetHicon())
+$stream = [System.IO.File]::Create("$PWD\assets\ChromaTap.ico")
+$icon.Save($stream)
+$stream.Close()
+$img.Dispose()
+
+After Conversion
+----------------
+Once you have ChromaTap.ico in the assets folder, you're ready to build!
