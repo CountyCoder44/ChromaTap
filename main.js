@@ -7,20 +7,17 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1000,
     height: 700,
+    icon: path.join(__dirname, 'assets', 'ChromaTap.ico'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
-      nodeIntegration: false
+      nodeIntegration: false,
+      devTools: false  // Disable DevTools completely
     }
   });
 
   // Load your HTML interface
   mainWindow.loadFile('index.html');
-
-  // ✅ Open DevTools only after content is loaded
-  mainWindow.webContents.once('did-finish-load', () => {
-    mainWindow.webContents.openDevTools();
-  });
 }
 
 // Handle color sampling from cursor

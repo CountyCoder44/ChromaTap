@@ -47,6 +47,7 @@
     "@electron-forge/maker-squirrel": "^7.10.2",
     "@electron-forge/maker-zip": "^7.10.2",
     "electron": "38.3.0",
-    "png-to-ico": "^3.0.1"
+    "png-to-ico": "^3.0.1",
+    "rcedit": "^5.0.1"
   }
 }
