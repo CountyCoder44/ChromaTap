@@ -1,7 +1,7 @@
 {
   "name": "chroma-tap",
   "productName": "ChromaTap",
-  "version": "0.1.0-alpha",
+  "version": "0.1.1-alpha",
   "description": "A color sampling and palette management tool with color wheel, invert, and storage features.",
   "main": "main.js",
   "scripts": {

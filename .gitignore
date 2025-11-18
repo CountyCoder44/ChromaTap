@@ -24,6 +24,6 @@ npm-debug.log*
 .env
 .env.local
 
-# Optional: User data (uncomment if you don't want to track default data)
-# data/projects.json
-# data/palettes.json
+# User data - don't include personal palettes in releases
+data/projects.json
+data/palettes.json

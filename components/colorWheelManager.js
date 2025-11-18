@@ -83,8 +83,11 @@ export function initColorWheel(canvas, brightnessSlider, saturationSlider, onCol
   // Handle wheel click
   canvas.addEventListener('click', (e) => {
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    // Account for DPI scaling by using canvas coordinate system
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
     
     const dx = x - centerX;
     const dy = y - centerY;

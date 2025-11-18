@@ -11,7 +11,17 @@ const projectsPath = path.join(__dirname, '../data/projects.json');
 function ensureFile(filePath, defaultJson = '[]') {
   const dir = path.dirname(filePath);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  if (!fs.existsSync(filePath)) fs.writeFileSync(filePath, defaultJson, 'utf8');
+  if (!fs.existsSync(filePath)) {
+    // Check if a template file exists
+    const templatePath = `${filePath.replace('.json', '.template.json')}`;
+    if (fs.existsSync(templatePath)) {
+      // Copy template file for fresh install
+      fs.copyFileSync(templatePath, filePath);
+    } else {
+      // Fallback to default JSON
+      fs.writeFileSync(filePath, defaultJson, 'utf8');
+    }
+  }
 }
 
 function safeReadJSON(filePath, fallback) {
