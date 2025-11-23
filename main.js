@@ -23,7 +23,16 @@ function createWindow() {
 // Handle color sampling from cursor
 ipcMain.handle('get-cursor-color', () => {
   const { x, y } = screen.getCursorScreenPoint();
-  const hex = robot.getPixelColor(x, y);
+  
+  // Get the display at cursor position to determine scale factor
+  const display = screen.getDisplayNearestPoint({ x, y });
+  const scaleFactor = display.scaleFactor || 1;
+  
+  // Convert logical coordinates to physical coordinates for high-DPI displays
+  const physicalX = Math.round(x * scaleFactor);
+  const physicalY = Math.round(y * scaleFactor);
+  
+  const hex = robot.getPixelColor(physicalX, physicalY);
   const r = parseInt(hex.slice(0, 2), 16);
   const g = parseInt(hex.slice(2, 4), 16);
   const b = parseInt(hex.slice(4, 6), 16);
